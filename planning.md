@@ -50,7 +50,7 @@ Summary: My domain will be of knowledge on UCI ACC Apartments. This knowledge is
 
 **Overlap:** 150
 
-**Reasoning:** Usually, the reviews are split into paragraphs. A smaller review could be 1-3 sentences, while a larger review could be 4-6 paragraphs. To take...
+**Reasoning:** Usually, the reviews are split into paragraphs. A smaller review could be 1-3 sentences, while a larger review could be 4-6 paragraphs. To take into account these, I decided to have a larger chunk size, to either capture a good portion of a larger review or multiple reviews.
 
 ---
 
@@ -62,11 +62,11 @@ Summary: My domain will be of knowledge on UCI ACC Apartments. This knowledge is
      would you weigh in choosing a different embedding model — context length, multilingual
      support, accuracy on domain-specific text, latency? -->
 
-**Embedding model:**
+**Embedding model:** all-MiniLM-L6-v2
 
-**Top-k:**
+**Top-k:** 5 chunks
 
-**Production tradeoff reflection:**
+**Production tradeoff reflection:** I'd choose a better model, like an OpenAI model. I'd also include more sources to draw information from.
 
 ---
 
@@ -77,13 +77,13 @@ Summary: My domain will be of knowledge on UCI ACC Apartments. This knowledge is
      is right or wrong. "What are good dining halls?" is too vague.
      "What do students say about wait times at [dining hall name] during lunch?" is testable. -->
 
-| #   | Question | Expected answer |
-| --- | -------- | --------------- |
-| 1   |          |                 |
-| 2   |          |                 |
-| 3   |          |                 |
-| 4   |          |                 |
-| 5   |          |                 |
+| #   | Question                                              | Expected answer                                                                                                 |
+| --- | ----------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| 1   | What do students say about distance in PV 1?          | PV 1 is very close to a bus stop. However, the bus may be full, since it is the last stop in the \_ track.      |
+| 2   | Are VDC room sizes comfortable?                       | VDC offers usually single rooms, so comfortable.                                                                |
+| 3   | What do students say about PV 2's experience?         | New construction, very clean, sometimes faulty wifi, expensive parking                                          |
+| 4   | What do students say about Camino de Sol's amneities? | Has pool and laundry, access to all other ACC amenities, pool/hot tub, don't have to sahre a room, $1,103-1,462 |
+| 5   | What do students say about Puerta del Sol's room?     | Free laundry, close walk, has to share closet with two people, no desks                                         |
 
 ---
 
@@ -93,9 +93,11 @@ Summary: My domain will be of knowledge on UCI ACC Apartments. This knowledge is
      Consider: noisy or inconsistent documents, missing source attribution, off-topic
      retrieval, chunks that split key information across boundaries. -->
 
-1.
+1. The reviews are mixed, and chunks will likely have information on different ACC apartments.
 
-2.
+2. Reviews can range from less than an incomplete sentence to multiple paragraphs, meaning that information can get mixed up.
+
+3. Some of the sources are in ranked formatting, meaning that there could be bias towards some apartments over others.
 
 ---
 
