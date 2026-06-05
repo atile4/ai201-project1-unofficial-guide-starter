@@ -4,6 +4,7 @@
 > Your spec and architecture diagram are what you'll use to direct AI tools (Claude, Copilot, etc.) to generate your implementation — the more specific they are, the more useful the generated code will be.
 > Update the Retrieval Approach and Chunking Strategy sections if you change your approach during implementation.
 > Update this file before starting any stretch features.
+
 ---
 
 ## Domain
@@ -122,6 +123,10 @@ Summary: My domain will be of knowledge on UCI ACC Apartments. This knowledge is
      "I'll use AI to help me code" is not a plan.
      "I'll give Claude my Chunking Strategy section and ask it to implement chunk_text()
      with my specified chunk size and overlap" is a plan. -->
+
+I plan on using Claude to help guide me through step by step to helping me complete this, so I can understand and learn by example. If needed, I'll also provide Claude the documents to recommend chunk sizes and k sizes.
+
+With each specific function, I'll ask Claude the steps on how to implement it, write it out myself, and verify with Claude that it matches what I need.
 
 **Milestone 3 — Ingestion and chunking:**
 
