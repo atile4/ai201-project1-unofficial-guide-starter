@@ -4,7 +4,6 @@
 > Your spec and architecture diagram are what you'll use to direct AI tools (Claude, Copilot, etc.) to generate your implementation — the more specific they are, the more useful the generated code will be.
 > Update the Retrieval Approach and Chunking Strategy sections if you change your approach during implementation.
 > Update this file before starting any stretch features.
-
 ---
 
 ## Domain
@@ -108,6 +107,7 @@ Summary: My domain will be of knowledge on UCI ACC Apartments. This knowledge is
      Label each stage with the tool or library you're using.
      You can use ASCII art, a Mermaid diagram, or embed a sketch as an image.
      You'll use this diagram as context when prompting AI tools to implement each stage. -->
+<img width="582" height="87" alt="image" src="https://github.com/user-attachments/assets/73532a53-9445-4e9a-bbff-c1045bbb612e" />
 
 ---
 
