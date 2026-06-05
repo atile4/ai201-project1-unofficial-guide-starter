@@ -77,13 +77,13 @@ Summary: My domain will be of knowledge on UCI ACC Apartments. This knowledge is
      is right or wrong. "What are good dining halls?" is too vague.
      "What do students say about wait times at [dining hall name] during lunch?" is testable. -->
 
-| #   | Question                                              | Expected answer                                                                                                 |
-| --- | ----------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| 1   | What do students say about distance in PV 1?          | PV 1 is very close to a bus stop. However, the bus may be full, since it is the last stop in the \_ track.      |
-| 2   | Are VDC room sizes comfortable?                       | VDC offers usually single rooms, so comfortable.                                                                |
-| 3   | What do students say about PV 2's experience?         | New construction, very clean, sometimes faulty wifi, expensive parking                                          |
-| 4   | What do students say about Camino de Sol's amneities? | Has pool and laundry, access to all other ACC amenities, pool/hot tub, don't have to sahre a room, $1,103-1,462 |
-| 5   | What do students say about Puerta del Sol's room?     | Free laundry, close walk, has to share closet with two people, no desks                                         |
+| #   | Question                                                                                             | Expected answer                                                                                                 |
+| --- | ---------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| 1   | What do students say about PV1's bus situation, and what is the downside of its bus stop location?   | PV 1 is very close to a bus stop. However, the bus may be full, since it is the last stop in the \_ track.      |
+| 2   | What type of room arrangement does VDC typically offer, and how do students feel about the space?    | VDC offers usually single rooms, so comfortable.                                                                |
+| 3   | What are the most common complaints students mention about Plaza Verde 2?                            | New construction, very clean, sometimes faulty wifi, expensive parking                                          |
+| 4   | What amenities does Camino del Sol offer, and what is the approximate monthly rent range?            | Has pool and laundry, access to all other ACC amenities, pool/hot tub, don't have to sahre a room, $1,103-1,462 |
+| 5   | What are the specific storage and furniture limitations students mention about Puerta del Sol rooms? | Free laundry, close walk, has to share closet with two people, no desks                                         |
 
 ---
 
