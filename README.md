@@ -1,7 +1,7 @@
 # The Unofficial Guide — Project 1
 
 > **How to use this template:**
-> Complete each section *after* you've built and tested the corresponding part of your system.
+> Complete each section _after_ you've built and tested the corresponding part of your system.
 > Do not write placeholder text — if a section isn't done yet, leave it blank and come back.
 > Every section below is required for submission. One-liners will not receive full credit.
 
@@ -14,7 +14,9 @@
      Example: "Student reviews of CS professors at [university] — useful because official
      course descriptions don't reflect teaching style, exam difficulty, or workload." -->
 
----
+UCI ACC Housing Options
+
+I chose this domain because with off-campus housing, there are a lot of details outside of official channels that are still important for a student to consider. Details like cleanliness, thickness of walls so that you won't get disturbed by neighbors, and just general thoughts of a housing option would be very important for a student to know about before making their decisions.
 
 ## Document Sources
 
@@ -22,18 +24,18 @@
      Be specific: include URLs, subreddit names, forum thread titles, or file names.
      Aim for variety — sources that together cover different subtopics or perspectives. -->
 
-| # | Source | Type | URL or file path |
-|---|--------|------|-----------------|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
-| 5 | | | |
-| 6 | | | |
-| 7 | | | |
-| 8 | | | |
-| 9 | | | |
-| 10 | | | |
+| #   | Source         | Description                                   | URL or location                                                                                                  |
+| --- | -------------- | --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| 1   | Reddit         | General thoughts on ACC Apartments            | https://www.reddit.com/r/UCI/comments/1cd2ub3 whats_life_like_in_the_acc_apartments/                             |
+| 2   | Reddit         | Housing Recommendations for 2nd year          | https://www.reddit.com/r/UCI/comments/1oa9vmh/housing_recs_for_second_yr/                                        |
+| 3   | Reddit         | Opinions about PV 1                           | https://www.reddit.com/r/UCI/comments/x4b6hb/honest_opinions_about_living_in_plaza_verde/                        |
+| 4   | Reddit         | Asking about which ACC apartment is the best  | https://www.reddit.com/r/UCI/comments/18iltqk/which_continuing_student_housing_is_best/                          |
+| 5   | Reddit         | PV II Reviews                                 | https://www.reddit.com/r/UCI/comments/1l8k2b9/plaza_verde_ii_reviews/                                            |
+| 6   | RateMyDorm     | Ranked dorms in UCI (included on-campus)      | https://www.ratemydorm.com/dorms-ranked/university-of-california-irvine                                          |
+| 7   | Reddit         | Asking about favorite ACC                     | https://www.reddit.com/r/UCI/comments/1306oa1/whats_your_favorite_acc_apartment_community/                       |
+| 8   | Wordpress Blog | Ranking UCI Undergraduate Housing Communities | https://campusobscura.wordpress.com/2024/06/13/uci-undergraduate-housing-communities-ranked-an-unfiltered-guide/ |
+| 9   | RateMyDorm     | VDC Reviews                                   | https://www.ratemydorm.com/reviews/university-of-california-irvine/uc-irvine-vista-del-campo                     |
+| 10  | Reddit         | Are ACC Apartments really that bad?           | https://www.reddit.com/r/UCI/comments/14wks9z/are_the_acc_apartments_really_that_bad/                            |
 
 ---
 
@@ -46,13 +48,13 @@
      - Any preprocessing you did before chunking (e.g., stripping HTML, removing headers)
      - What your final chunk count was across all documents -->
 
-**Chunk size:**
+**Chunk size:** 1000
 
-**Overlap:**
+**Overlap:** 150
 
-**Why these choices fit your documents:**
+**Why these choices fit your documents:** Usually, the reviews are split into paragraphs. A smaller review could be 1-3 sentences, while a larger review could be 4-6 paragraphs. To take into account the wide range of revies, I decided to have a larger chunk size, to either capture a good portion of a larger review or multiple reviews.
 
-**Final chunk count:**
+**Final chunk count:** 94
 
 ---
 
@@ -64,9 +66,9 @@
      Consider: context length limits, multilingual support, accuracy on domain-specific text,
      latency, and local vs. API-hosted. -->
 
-**Model used:**
+**Model used:** all-MiniLM-L6-v2
 
-**Production tradeoff reflection:**
+**Production tradeoff reflection:** I'd choose a better model, like an OpenAI model. The model I use, all-MiniLM-L6-v2, has a 256-token limit and will remove anything longer than that. Although my chunk size should fit inside this limit, it's a factor that still needs be considered. I'd also include more sources to draw information from, as some of my sources are shorter, particularly the reddit forums, are pretty short, and there are a wide variety of opinions on UCI's ACC apartments.
 
 ---
 
@@ -80,8 +82,12 @@
      the mechanism. -->
 
 **System prompt grounding instruction:**
+Grounding is enforced through a system prompt that constrains the model to the retrieved context. The prompt instructs the LLM that it is answering questions about UCI ACC housing based only on the student reviews passed to it as context. The `SYSTEM_PROMPT` variable lays out hard rules: answer using only the provided context, do not use outside or general knowledge about housing or UCI, and to respond with "I don't have enough info" if context doesn't contain enough information.
+
+I also set the model's temperature to 0.2 so it stays close to the source text instead of generating creative or speculative answers. Structurally, the retrieved chunks are formatted into a numbered context block where each chunk is labeled with its source document, so the model sees both the text and where it came from before answering.
 
 **How source attribution is surfaced in the response:**
+Source attribution is generated programmatically from retrieval metadata, not by the LLM. After retrieval, each returned chunk carries a source field (the original document filename) stored in ChromaDB. The system collects these filenames, de-duplicates them while preserving retrieval order (most relevant source first), and displays them alongside every answer.
 
 ---
 
@@ -91,13 +97,13 @@
      Be honest — a partially accurate or inaccurate result that you explain well is more
      valuable than a suspiciously perfect result. -->
 
-| # | Question | Expected answer | System response (summarized) | Retrieval quality | Response accuracy |
-|---|----------|-----------------|------------------------------|-------------------|-------------------|
-| 1 |What do students say about PV1's bus situation, and what is the downside of its bus stop location?|PV 1 is very close to a bus stop. However, the bus may be full, since it is the last stop in the M track. | Getting a spot in the bus can be hard, especially when people are heading to class. Bus stop location is convenient, but busy during peak hours |Relevant|Accurate|
-| 2 |What type of room arrangement does VDC typically offer, and how do students feel about the space?    | VDC offers usually single rooms, so comfortable.  |Large, comparitively large single rooms, decent price. Carpet floors can be "kinda gross", and that the space can feel smaller when sharing roommates|Partially Relevant|Accurate|
-| 3 |What are the most common complaints students mention about Plaza Verde 2?|New construction, very clean, sometimes faulty wifi, expensive parking|According to the provided context, the most common complaints students mention about Plaza Verde 2 are related to the contract length, being 36 pages long and super one-sided towards the Landlord, as well as potential bug issues. One student also mentions considering not living in Plaza Verde 2 due to hearing "horror stories" about bugs from friends. Additionally, another student mentions that the contract is a concern, but does not specify other complaints. However, it is also mentioned that Plaza Verde II has the newest amenities.|Partially relevant|Accurate|
-| 4 |What amenities does Camino del Sol offer, and what is the approximate monthly rent range?|Has pool and laundry, access to all other ACC amenities, pool/hot tub, don't have to sahre a room, $1,103-1,462|According to the context, Camino del Sol offers the following amenities: pool, included laundry, access to all other ACC Amenities. The approximate monthly rent range for Camino del Sol is $1,103-$1,462.|Relevant|Accurate|
-| 5 |What are the specific storage and furniture limitations students mention about Puerta del Sol rooms? | Free laundry, close walk, has to share closet with two people, no desks|Having to share a closet with two people, There are no desks in the rooms, so students have to bring their own, Barely any space in the room, making it difficult to fit a desk|Relevant|Accurate|
+| #   | Question                                                                                             | Expected answer                                                                                                 | System response (summarized)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Retrieval quality  | Response accuracy |
+| --- | ---------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ | ----------------- |
+| 1   | What do students say about PV1's bus situation, and what is the downside of its bus stop location?   | PV 1 is very close to a bus stop. However, the bus may be full, since it is the last stop in the M track.       | Getting a spot in the bus can be hard, especially when people are heading to class. Bus stop location is convenient, but busy during peak hours                                                                                                                                                                                                                                                                                                                                                                                                            | Relevant           | Accurate          |
+| 2   | What type of room arrangement does VDC typically offer, and how do students feel about the space?    | VDC offers usually single rooms, so comfortable.                                                                | Large, comparitively large single rooms, decent price. Carpet floors can be "kinda gross", and that the space can feel smaller when sharing roommates                                                                                                                                                                                                                                                                                                                                                                                                      | Partially Relevant | Accurate          |
+| 3   | What are the most common complaints students mention about Plaza Verde 2?                            | New construction, very clean, sometimes faulty wifi, expensive parking                                          | According to the provided context, the most common complaints students mention about Plaza Verde 2 are related to the contract length, being 36 pages long and super one-sided towards the Landlord, as well as potential bug issues. One student also mentions considering not living in Plaza Verde 2 due to hearing "horror stories" about bugs from friends. Additionally, another student mentions that the contract is a concern, but does not specify other complaints. However, it is also mentioned that Plaza Verde II has the newest amenities. | Partially relevant | Accurate          |
+| 4   | What amenities does Camino del Sol offer, and what is the approximate monthly rent range?            | Has pool and laundry, access to all other ACC amenities, pool/hot tub, don't have to sahre a room, $1,103-1,462 | According to the context, Camino del Sol offers the following amenities: pool, included laundry, access to all other ACC Amenities. The approximate monthly rent range for Camino del Sol is $1,103-$1,462.                                                                                                                                                                                                                                                                                                                                                | Relevant           | Accurate          |
+| 5   | What are the specific storage and furniture limitations students mention about Puerta del Sol rooms? | Free laundry, close walk, has to share closet with two people, no desks                                         | Having to share a closet with two people, There are no desks in the rooms, so students have to bring their own, Barely any space in the room, making it difficult to fit a desk                                                                                                                                                                                                                                                                                                                                                                            | Relevant           | Accurate          |
 
 **Retrieval quality:** Relevant / Partially relevant / Off-target  
 **Response accuracy:** Accurate / Partially accurate / Inaccurate
@@ -151,12 +157,12 @@
 
 **Instance 1**
 
-- *What I gave the AI:*
-- *What it produced:*
-- *What I changed or overrode:*
+- _What I gave the AI:_
+- _What it produced:_
+- _What I changed or overrode:_
 
 **Instance 2**
 
-- *What I gave the AI:*
-- *What it produced:*
-- *What I changed or overrode:*
+- _What I gave the AI:_
+- _What it produced:_
+- _What I changed or overrode:_
