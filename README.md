@@ -175,6 +175,6 @@ Although my implementation mostly followed the spec, while I was chunking and re
 
 **Instance 2**
 
-- _What I gave the AI:_ My retrieval results across k=4 and k=5, asking whether the different k values made a difference.
-- _What it produced:_ An explanation that lowering k only truncates the bottom of the ranked list without changing rankings, and that k wouldn't fix my PV1 bus query because that was a chunk-dilution problem, not a k problem.
-- _What I changed or overrode:_ I kept k=5 instead of raising it, because the explanation showed more chunks wouldn't recover the failed query and would just add noise.
+- _What I gave the AI:_ My 10 documents, and asked it to create a function that could scrape and format all the raw text and store it in the directory documents/.
+- _What it produced:_ Three web scrapers for the three different types of websites I used as sources, as well as ingest.py to clean the punctuation/whitespaces.
+- _What I changed or overrode:_ The reddit web scraper failed to retrieve the text, likely because it has guards against bots or against what I was doing. Instead of trying to figure this out, I modified the function to take the raw JSON text in one-line and work with the document from there.
