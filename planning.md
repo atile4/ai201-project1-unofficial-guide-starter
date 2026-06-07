@@ -126,7 +126,7 @@ Summary: My domain will be of knowledge on UCI ACC Apartments. This knowledge is
 
 I plan on using Claude to help guide me through step by step to helping me complete this, so I can understand and learn by example. If needed, I'll also provide Claude the documents to recommend chunk sizes and k sizes.
 
-With each specific function, I'll ask Claude the steps on how to implement it, write it out myself, and verify with Claude that it matches what I need.
+For each group of functions, like for chunking, ingesting, and retrieving, I'll check with Claude.
 
 **Milestone 3 — Ingestion and chunking:**
 Returned 94 chunks

@@ -125,11 +125,20 @@ Source attribution is generated programmatically from retrieval metadata, not by
 
 **Question that failed:**
 
+What are the most common complaints students mention about Plaza Verde 2?
+
 **What the system returned:**
+
+According to the provided context, the most common complaints students mention about Plaza Verde 2 are related to the contract length, being 36 pages long and super one-sided towards the Landlord, as well as potential bug issues. One student also mentions considering not living in Plaza Verde 2 due to hearing "horror stories" about bugs from friends. Additionally, another student mentions that the contract is a concern, but does not specify other complaints. However, it is also mentioned that Plaza Verde II has the newest amenities.
 
 **Root cause (tied to a specific pipeline stage):**
 
+Although the return reflected what I saw when I skimmed through the documents, it's pretty off-topic in the sense that it doesn't give much information about the actual room.
+
+I believe that the most likely cause was from Ingestion. I very likely didn't provide enough relevancy towards the topic of PV 2 itself, and the model could only draw its information from so many sources, particularly some irrelevant ones.
+
 **What you would change to fix it:**
+I would include sources involving more specific details about PV II.
 
 ---
 
@@ -140,7 +149,10 @@ Source attribution is generated programmatically from retrieval metadata, not by
 
 **One way the spec helped you during implementation:**
 
+`planning.md` helped me with coming up with chunk/overlap sizes, organizing my thoughts, and sorting/gathering documents. Drawing out an architecture in Canva also helped me to comprehend the problem and implementation.
+
 **One way your implementation diverged from the spec, and why:**
+Although my implementation mostly followed the spec, while I was chunking and retrieving samples, I noticed that there were some words that were getting cut off. This was small, and the general idea remained consistent even with the cutoff, and I would've fixed this by having a larger overlap than 150.
 
 ---
 
@@ -157,12 +169,12 @@ Source attribution is generated programmatically from retrieval metadata, not by
 
 **Instance 1**
 
-- _What I gave the AI:_
-- _What it produced:_
-- _What I changed or overrode:_
+- _What I gave the AI:_ My Chunking Strategy section from planning.md (1000-char chunks, 150 overlap, reasoning about variable-length reviews) and asked it to implement the chunking function.
+- _What it produced:_ A recursive splitter that breaks on paragraphs, then sentences, then words. When I ran it on my real documents it crashed with a RecursionError — one document had a long unbroken stretch of text with no separators.
+- _What I changed or overrode:_ I looked through the actual error and worked with Claude to fix the bug. The fix added a hard character-cut base case so an oversized piece always terminates. I verified the fix by re-running on my full document set and confirming it produced 94 clean chunks.
 
 **Instance 2**
 
-- _What I gave the AI:_
-- _What it produced:_
-- _What I changed or overrode:_
+- _What I gave the AI:_ My retrieval results across k=4 and k=5, asking whether the different k values made a difference.
+- _What it produced:_ An explanation that lowering k only truncates the bottom of the ranked list without changing rankings, and that k wouldn't fix my PV1 bus query because that was a chunk-dilution problem, not a k problem.
+- _What I changed or overrode:_ I kept k=5 instead of raising it, because the explanation showed more chunks wouldn't recover the failed query and would just add noise.
