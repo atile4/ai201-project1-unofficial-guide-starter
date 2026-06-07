@@ -93,11 +93,11 @@
 
 | # | Question | Expected answer | System response (summarized) | Retrieval quality | Response accuracy |
 |---|----------|-----------------|------------------------------|-------------------|-------------------|
-| 1 | | | | | |
-| 2 | | | | | |
-| 3 | | | | | |
-| 4 | | | | | |
-| 5 | | | | | |
+| 1 |What do students say about PV1's bus situation, and what is the downside of its bus stop location?|PV 1 is very close to a bus stop. However, the bus may be full, since it is the last stop in the M track. | Getting a spot in the bus can be hard, especially when people are heading to class. Bus stop location is convenient, but busy during peak hours |Relevant|Accurate|
+| 2 |What type of room arrangement does VDC typically offer, and how do students feel about the space?    | VDC offers usually single rooms, so comfortable.  |Large, comparitively large single rooms, decent price. Carpet floors can be "kinda gross", and that the space can feel smaller when sharing roommates|Partially Relevant|Accurate|
+| 3 |What are the most common complaints students mention about Plaza Verde 2?|New construction, very clean, sometimes faulty wifi, expensive parking|According to the provided context, the most common complaints students mention about Plaza Verde 2 are related to the contract length, being 36 pages long and super one-sided towards the Landlord, as well as potential bug issues. One student also mentions considering not living in Plaza Verde 2 due to hearing "horror stories" about bugs from friends. Additionally, another student mentions that the contract is a concern, but does not specify other complaints. However, it is also mentioned that Plaza Verde II has the newest amenities.|Partially relevant|Accurate|
+| 4 |What amenities does Camino del Sol offer, and what is the approximate monthly rent range?|Has pool and laundry, access to all other ACC amenities, pool/hot tub, don't have to sahre a room, $1,103-1,462|According to the context, Camino del Sol offers the following amenities: pool, included laundry, access to all other ACC Amenities. The approximate monthly rent range for Camino del Sol is $1,103-$1,462.|Relevant|Accurate|
+| 5 |What are the specific storage and furniture limitations students mention about Puerta del Sol rooms? | Free laundry, close walk, has to share closet with two people, no desks|Having to share a closet with two people, There are no desks in the rooms, so students have to bring their own, Barely any space in the room, making it difficult to fit a desk|Relevant|Accurate|
 
 **Retrieval quality:** Relevant / Partially relevant / Off-target  
 **Response accuracy:** Accurate / Partially accurate / Inaccurate
