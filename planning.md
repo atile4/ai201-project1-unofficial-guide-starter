@@ -129,6 +129,7 @@ I plan on using Claude to help guide me through step by step to helping me compl
 With each specific function, I'll ask Claude the steps on how to implement it, write it out myself, and verify with Claude that it matches what I need.
 
 **Milestone 3 — Ingestion and chunking:**
+Returned 94 chunks
 
 **Milestone 4 — Embedding and retrieval:**
 
